@@ -1,5 +1,6 @@
 let time = 20;
 let score = 0;
+let highest_score = 0;
 let timeval;
 let pause = false;
 let start = false;
@@ -23,10 +24,13 @@ function timer(){
             }
             else{
                 clearInterval(timeval);
+                highest_score = Math.max(highest_score , document.querySelector("#scoreVal").textContent);
                 document.querySelector("#box_btm").innerHTML = `<div>
                 <h1 style="color:white;">Game Over</h1>
                 <br> 
                 <h3> Your Score : ${document.querySelector("#scoreVal").textContent}</h3>
+                <br>
+                <h3>Highest Score : ${highest_score}</h3>
                 </div>`;
                 start = false;
             }
@@ -43,10 +47,14 @@ function timer(){
             }
             else{
                 clearInterval(timeval);
+                highest_score = Math.max(highest_score , document.querySelector("#scoreVal").textContent);
+
                 document.querySelector("#box_btm").innerHTML = `<div>
                 <h1 style="color:white;">Game Over</h1>
                 <br>
                 <h3> Your Score : ${document.querySelector("#scoreVal").textContent}</h3>
+                <br>
+                <h3>Highest Score : ${highest_score}</h3>
                 </div>`;
                 start = false;
             }
@@ -55,11 +63,9 @@ function timer(){
 
 }
 
-
 function randomHit(){
     document.querySelector("#hitVal").textContent = Math.floor(Math.random()*10);
 }
-
 
 document.querySelector("#box_btm").addEventListener("click" , (x)=>{
     let tar = x.target;
